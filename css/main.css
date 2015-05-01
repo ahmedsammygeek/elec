@@ -364,7 +364,10 @@ input.search-form:hover {
 
 
 #main-slider {
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
+  width: 80%;
 }
 
 .no-margin {
