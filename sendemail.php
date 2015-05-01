@@ -11,7 +11,7 @@ if(!isset($_POST['email']) || empty($_POST['email'])) {
     die();
 }
 
-if(filter_var($_POST['email'] , FILTER_VALIDATE_EMAIL)) {
+if(!filter_var($_POST['email'] , FILTER_VALIDATE_EMAIL)) {
     header('location: contact.php?msg=email_inv');
     die();
 }
@@ -32,9 +32,7 @@ require 'admin/connection.php';
 
 
 $insert = mysqli_query($connect , "INSERT INTO messages VALUES(''  , '$name' , '$email' , '$message' , '$time')");
-if ($insert) {
-    
-}
+
 
 
 

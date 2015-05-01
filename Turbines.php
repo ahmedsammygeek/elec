@@ -20,11 +20,11 @@ require 'header.php';
              <div class='portfolio-item joomla html bootstrap col-xs-12 col-sm-4 col-md-3'>
              <div class='recent-work-wrap'>
              <h2 class='text-center'>$title</h2>
-             <img class='img-responsive' src='admin/image/$image'>
+             <img class='img-responsive' width='120px' height='70px' src='admin/image/$image'>
              <h3>$content</h3>
-             
+
              </div>      
-             </div><!--/.portfolio-item-->";
+             </div>";
          } 
          ?>
 
