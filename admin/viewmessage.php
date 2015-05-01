@@ -28,24 +28,22 @@ require 'sidebar.php';
 								<table class="table table-mailbox">
 									<?php 
 									require 'connection.php';
-									$query2=$conn->prepare("UPDATE messages SET viewed=1 WHERE id=$id");
-									$query2->execute();
-									$sql="SELECT * FROM messages WHERE id=$id";
-									$query=$conn->query($sql);
+									
+									$query=mysqli_query($connect , "SELECT * FROM messages WHERE id=$id");
 									$i=1;
-									$result=$query->fetch(PDO::FETCH_ASSOC);
+									$result=mysqli_fetch_assoc($query);
 										extract($result);
 										echo "<tr>
-										<td><h3>FROM:</h3>$name</td>
+										<td><h3>FROM:</h3>$user_name</td>
 										</tr>
 										<tr>
 										<td><h3>EMAIL:</h3>$email</td>
 										</tr>
 										<tr>
-										<td><h3>CONTENT:</h3>$contant</td>
+										<td><h3>CONTENT:</h3>$content</td>
 										</tr>
 										<tr>
-										<td><h3>TIME:</h3>$time</td>
+										<td><h3>TIME:</h3>$date</td>
 										</tr>
 										";
 										$i++;
