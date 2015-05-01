@@ -1,21 +1,33 @@
 <?php
-	header('Content-type: application/json');
-	$status = array(
-		'type'=>'success',
-		'message'=>'Thank you for contact us. As early as possible  we will contact you '
-	);
 
-    $name = @trim(stripslashes($_POST['name'])); 
-    $email = @trim(stripslashes($_POST['email'])); 
-    $subject = @trim(stripslashes($_POST['subject'])); 
-    $message = @trim(stripslashes($_POST['message'])); 
 
-    $email_from = $email;
-    $email_to = 'email@email.com';//replace with your email
+    if(!isset($_POST['name']) || empty($_POST['name'])) {
+        header('location: contact.php?msg=name');
+        die();
+    }
 
-    $body = 'Name: ' . $name . "\n\n" . 'Email: ' . $email . "\n\n" . 'Subject: ' . $subject . "\n\n" . 'Message: ' . $message;
+    if(!isset($_POST['email']) || empty($_POST['email'])) {
+        header('location: contact.php?msg=email');
+        die();
+    }
 
-    $success = @mail($email_to, $subject, $body, 'From: <'.$email_from.'>');
+    if(filter_var($_POST['email'] , FILTER_VALIDATE_EMAIL)) {
+        header('location: contact.php?msg=email_inv');
+        die();
+    }
 
-    echo json_encode($status);
-    die;
+    if(!isset($_POST['message']) || empty($_POST['message'])) {
+        header('location: contact.php?msg=message');
+        die();
+    }
+
+
+$name = filter_input(INPUT_POST, 'name' , FILTER_SANITIZE_STRING);
+$email = filter_input(INPUT_POST, 'email' , FILTER_SANITIZE_STRING);
+$message = filter_input(INPUT_POST, 'message' , FILTER_SANITIZE_STRING);
+
+
+require 'admin/connection.php';
+
+	
+    $insert = mysqli_query($connect , "INSERT INTO messages VALUES(''  , '' , '' , '' , '')")
