@@ -7,7 +7,7 @@
  <!-- Content Header (Page header) -->
  <section class="content-header">
     <h1>
-        add new image to slider
+        add new product
 
     </h1>
 
@@ -21,7 +21,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">enter data</h3>
+                    <h3 class="box-title">enter data of new product</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <?php 
@@ -44,14 +44,6 @@
                         <b>Alert!</b> erro in your data inserted please try again.
                         </div>';
                         break;
-                        case 'small_image':
-                        //in this case image is smaller than we need 
-                        echo '<div class="alert alert-danger alert-dismissable">
-                        <i class="fa fa-ban"></i>
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <b>Alert!</b> this image is small please enter bigger than this image.
-                        </div>';
-                        break;
                         default:
                                             # code...
                         break;
@@ -60,10 +52,18 @@
 
 
                 ?>
-                <a href="showslider.php"> <button class="btn btn-primary" >sliders</button></a>
+                <a href="showproduct.php"> <button class="btn btn-primary" >products</button></a>
 
-                <form role="form" action="addslider.php" method="post" enctype="multipart/form-data" ><br>
+                <form role="form" action="addproduct.php" method="post" enctype="multipart/form-data" ><br>
                     <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputFile">title : </label>
+                            <input type="text" name="title" id="exampleInputFile" placeholder="enter title">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">content : </label>
+                            <textarea type="text" name='content' id="" cols="40" rows="5" placeholder="enter information about this product"></textarea>
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputFile">add image</label>
                             <input type="file" name="file" id="exampleInputFile">
@@ -71,10 +71,11 @@
                         </div>
 
 
+
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
-                        <input type="submit" name="submit" class="btn btn-primary" value="add slide">
+                        <input type="submit" name="submit" class="btn btn-primary" value="add product">
                     </div>
                 </form>
             </div><!-- /.box -->

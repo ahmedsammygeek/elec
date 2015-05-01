@@ -5,11 +5,13 @@ if(!isset($_SESSION['logged']) || $_SESSION['logged'] != 'true') {
 }
 
 if (isset($_POST['submit'])) {
+	$title = htmlspecialchars($_POST['title']);
+	$content = htmlspecialchars($_POST['content']);
 
-		if (empty($_FILES['file']['name'])) {
+		if (empty($_FILES['file']['name']) || empty($title) || empty($content)) {
 			// if user leave eny inputs empty without enter eny thing in this case 
 			//go to inputs page again and show alert about this case (some data is an empty)
-			header('location: slider.php?msg=empty_data'); die();
+			header('location: product.php?msg=empty_data'); die();
 		}
 	//name of image
 	$img_name=$_FILES['file']['name'];
@@ -17,7 +19,7 @@ if (isset($_POST['submit'])) {
 	require '../classes/filevalidate.php';
 	if (!validation($img_name,array('jpg','png','jpeg'))) {
 		// function return false 
-		header("location: slider.php?msg=error_data");die();
+		header("location: product.php?msg=error_data");die();
 	}
 	//function used to know file type
 	require '../classes/filetype.php';
@@ -29,21 +31,16 @@ if (isset($_POST['submit'])) {
 	$up=move_uploaded_file($_FILES['file']['tmp_name'], 'image/'.$img_name);
 	include 'connection.php';
 	//connection with database (met)
-	$sql="INSERT INTO slider VALUES('',?) ";
-	//add values in table (slider) 
-	$query=$conn->prepare($sql);
-	//prepare the sql request
-	$query->bindValue(1,$img_name,PDO::PARAM_STR);
-	//bind the information about image to send it to db (met) table(slider)
-	if ($query->execute()) {
+	$query=mysqli_query($connect , "INSERT INTO products VALUES('' , '$title' , '$content' , '$img_name') ");
+	if ($query) {
 		//if sql request executed and data sent success
 		//go to showslider.php
-		header('location: showslider.php?msg=data_inserted'); die();
+		header('location: showproduct.php?msg=data_inserted'); die();
 	}
 	else{
 		//if sql request non executed 
 		//go to input page again and show alert about this case (error ni insert)
-		header('location: slider.php?msg=error_data'); die();
+		header('location: product.php?msg=error_data'); die();
 	}
 
 }
