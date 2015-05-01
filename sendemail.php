@@ -32,7 +32,7 @@ require 'admin/connection.php';
 
 
 $insert = mysqli_query($connect , "INSERT INTO messages VALUES(''  , '$name' , '$email' , '$message' , '$time')");
-if ($inser) {
+if ($insert) {
     
 }
 
