@@ -61,11 +61,10 @@ require 'sidebar.php';
           <?php
           include 'connection.php';
                 //connection with database (met)
-          $sql="SELECT * FROM admin ";
-          $query=$conn->query($sql);
+          $query=mysqli_query($connect , "SELECT * FROM admins");
                 //prepare sql request
                 $i=1; // this variable is the number of every row in gellery (admins)
-                while ($result=$query->fetch(PDO::FETCH_ASSOC)) {
+                while ($result=mysqli_fetch_assoc($query)) {
                   //put the result from sql request in array 
                  extract($result);
                    //put data in variables

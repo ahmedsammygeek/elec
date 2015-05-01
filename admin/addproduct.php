@@ -22,18 +22,11 @@ if (isset($_POST['submit'])) {
 	//function used to know file type
 	require '../classes/filetype.php';
 	$type=get_type($img_name);
-	//class used to resize images
-	require_once '../classes/ImageManipulator.php';
 	//to make random name
 	$randomstring=substr(str_shuffle("1234567890abcdefghijklmnopqrstuvwxyz"), 0 , 15);
 	$img_name=$randomstring.".$type" ;
-	$newName= time() . '_';
-	$img=new ImageManipulator($_FILES['file']['tmp_name']);
-	//resize image
-
-	$newimg=$img->resample(1220,300);
 	//put image in file "image"
-	$img->save('image/'.$img_name);
+	$up=move_uploaded_file($_FILES['file']['tmp_name'], 'image/'.$img_name);
 	include 'connection.php';
 	//connection with database (met)
 	$sql="INSERT INTO slider VALUES('',?) ";

@@ -5,15 +5,8 @@ if (isset($_GET['msg'])) {
 }
 include 'connection.php';
 //connection with database (met)
-$sql="DELETE FROM admin WHERE id='$id' ";
-$query=$conn->query($sql);
-//prepare sql request
-$num=$query->rowCount();
-//this function return the number of rows deleted
-// var_dump($num); die();
-if ($num==1) {
-	//if exist row delete 
-	//go to gellery (admins)
+$query=mysqli_query($connect , "DELETE FROM admins WHERE id='$id' ");
+if ($query) {
 	header('location: showadmin.php?msg=deleted'); die();
 }
 else

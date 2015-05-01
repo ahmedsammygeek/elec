@@ -15,15 +15,8 @@ extract($inputs);
 $password=hash('ripemd160', "$password");
 include 'connection.php';
 //conection with databasemet
-$sql="INSERT INTO admin VALUES('',?,?) ";
-$query=$conn->prepare($sql);
-//prepare qsl request
-$query->bindValue(1,$name,PDO::PARAM_STR);
-//bind informathion and send it to table(admin)
-$query->bindValue(2,$password,PDO::PARAM_STR);
-//bind informathion and send it to table(admin)
-
-if ($query->execute()) {
+$query=mysqli_query($connect , "INSERT INTO admins VALUES('' , '$name' , '$password')");
+if ($query) {
 	//if sql request executed go to gallery (admins)
 	header('location: showadmin.php?msg=data_inserted'); die();
 }
