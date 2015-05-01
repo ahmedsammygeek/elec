@@ -11,18 +11,15 @@ if (isset($_POST['submit'])) {
 	extract($inputs);
 	$password=hash('ripemd160', "$password");
 	include 'connection.php';
-	$sql="SELECT * FROM admin WHERE name = '$userid' && password= '$password' " ;
-	$query=$conn->query($sql);
-	while ($result=$query->fetch(PDO::FETCH_ASSOC)) {
+	$query=mysqli_query($connect , "SELECT * FROM admins WHERE name = '$userid' && password= '$password' ");
+	while ($result=mysqli_fetch_assoc($query)) {
 		extract($result);
 	}
-	$query->execute();
-	$num=$query->rowCount();
-// var_dump($num); die();
+	$num=mysqli_num_rows($query);
 	if ($num == 1) {
 		$_SESSION['logged']='true';
 
-		header('location: index.php');
+		header('location: product.php');
 		die();
 	}
 	else

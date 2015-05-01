@@ -1,4 +1,5 @@
 <?php 
-mysqli_connect('localhost' , 'root' , '' , 'elec');
+ $connect = mysqli_connect('localhost', "root", "", "elec");
+
 
  ?>
