@@ -46,7 +46,7 @@ require 'sidebar.php';
            }
          } 
          ?>
-         <table id="example1" class="table table-hover">
+         <table  class="table table-hover">
 
           <thead>
            <tr>
