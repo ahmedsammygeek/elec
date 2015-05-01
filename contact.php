@@ -1,5 +1,5 @@
 <?php 
-
+$active = "contact";
 require 'header.php';
  ?>
 

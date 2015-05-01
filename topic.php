@@ -1,6 +1,6 @@
 <?php 
 
-
+$active = "blog";
 require 'header.php';
  ?>
     <section id="blog" class="container">

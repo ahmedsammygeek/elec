@@ -18,11 +18,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    
 </head><!--/head-->
 
 <body class="homepage">
@@ -44,12 +40,13 @@
 				
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Home</a></li>
-                        <li><a href="about.php">About Us</a></li>
-                        <li><a href="worker.php">our stuff</a></li>
-                        <li><a href="Turbines.php">Turbines</a></li>
-                        <li><a href="blog.php">news</a></li> 
-                        <li><a href="contact.php">Contact</a></li>                        
+
+                        <li <?php if($active=="home") {echo 'class="active"'; } ?>><a href="index.php">Home</a></li>
+                        <li <?php if($active=="about") {echo 'class="active"'; } ?> ><a href="about.php">About Us</a></li>
+                        <li <?php if($active=="worker") {echo 'class="active"'; } ?> ><a href="worker.php">our stuff</a></li>
+                        <li <?php if($active=="tur") {echo 'class="active"'; } ?> ><a href="Turbines.php">Turbines</a></li>
+                        <li <?php if($active=="blog") {echo 'class="active"'; } ?> ><a href="blog.php">news</a></li> 
+                        <li <?php if($active=="contact") {echo 'class="active"'; } ?> ><a href="contact.php">Contact</a></li>                        
                     </ul>
                 </div>
             </div><!--/.container-->

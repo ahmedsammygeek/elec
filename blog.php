@@ -1,4 +1,5 @@
 <?php 
+$active = "blog";
 
 require 'header.php';
  ?>

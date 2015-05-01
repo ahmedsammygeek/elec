@@ -1,5 +1,5 @@
 <?php 
-
+$active = "home";
 require 'header.php';
  ?>
 

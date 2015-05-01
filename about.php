@@ -1,5 +1,6 @@
 <?php 
 
+$active = "about";
 require 'header.php';
  ?>
     <section id="about-us">
