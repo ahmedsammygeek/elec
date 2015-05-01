@@ -11,8 +11,8 @@ require 'sidebar.php';
       <div class="box">
         <div class="box-header">
 
-          <h3 class="box-title">sliders</h3><br><br><br>
-          <a href="slider.php"> <button class="btn btn-success btn-lg">add new slide</button></a>
+          <h3 class="box-title">products</h3><br><br><br>
+          <a href="product.php"> <button class="btn btn-success btn-lg">add new product</button></a>
 
 
         </div><!-- /.box-header -->
@@ -49,13 +49,6 @@ require 'sidebar.php';
               <b>Alert!</b> data deleted successfully.
               </div>' ;
               break;
-              case 'not_exist':
-              echo '<div class="alert alert-danger alert-dismissable">
-              <i class="fa fa-ban"></i>
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-              <b>Alert!</b>  this image not exist in this file.
-              </div>';
-              break;
               case 'data_updated':
               echo '<div class="alert alert-success alert-dismissable">
               <i class="fa fa-check"></i>
@@ -77,6 +70,8 @@ require 'sidebar.php';
 
             <tbody><tr>
               <th>ID</th>
+              <th>TITLE</th>
+              <th>CONTETN</th>
               <th>IMAGE</th>
               <th>options</th>
 
@@ -84,16 +79,17 @@ require 'sidebar.php';
             </tr>
             <?php
             include 'connection.php';
-            $sql="SELECT * FROM slider ";
-            $query=$conn->query($sql);
+            $query=mysqli_query($connect , "SELECT * FROM products ");
             $i=1;
-            while ($result=$query->fetch(PDO::FETCH_ASSOC)) {
+            while ($result=mysqli_fetch_assoc($query)) {
              extract($result);
              echo " <tr>
              <td>$i</td>
+             <td>$title</td>
+             <td>$content</td>
              <td><img src='image/".$image."' width='50px' height='50px'></td>
-             <td><a href='deleteslider.php?id=$id&img=$image' class='btn btn-danger btn-sm'>DELETE</a>
-             <a href='editslider.php?id=$id&img=$image' class='btn btn-warning btn-sm'>update</a>
+             <td><a href='deleteproduct.php?id=$id&img=$image' class='btn btn-danger btn-sm'>DELETE</a>
+             <a href='editproduct.php?id=$id&img=$image' class='btn btn-warning btn-sm'>update</a>
              </td>
              </tr>";
              $i++;

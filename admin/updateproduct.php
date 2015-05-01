@@ -8,6 +8,8 @@ if (isset($_GET['id'])) {
 	$id=$_GET['id'];
 	$img=$_GET['img'];
 }
+$title = htmlspecialchars($_POST['title']);
+$content = htmlspecialchars($_POST['content']);
 
 if (empty($_FILES['file']['name'])) {
 	$img_name=$img;	
@@ -26,29 +28,20 @@ else{
 	//function used to know file type
 	require '../classes/filetype.php';
 	$type=get_type($img_name);
-	//class used to resize images
-	require_once '../classes/ImageManipulator.php';
-	//to make random name
 	$randomstring=substr(str_shuffle("1234567890abcdefghijklmnopqrstuvwxyz"), 0 , 15);
 	$img_name=$randomstring.".$type" ;
-	$newName= time() . '_';
-	$img=new ImageManipulator($_FILES['file']['tmp_name']);
-	//resize image
-	$newimg=$img->resample(100,100);
 	//put image in file "image"
-	$img->save('image/'.$img_name);
+	$up=move_uploaded_file($_FILES['file']['tmp_name'], 'image/'.$img_name);
 }
 
-extract($inputs);
 require 'connection.php';
-$sql="UPDATE slider SET image='$img_name' WHERE id=$id ";
-$query=$conn->prepare($sql);
-if ($query->execute()) {
-	header("location: showslider.php?id=$id&msg=data_updated"); die();
+$query=mysqli_query($connect , "UPDATE products SET image='$img_name',content='$content',title='$title' WHERE id=$id ");
+if ($query) {
+	header("location: showproduct.php?id=$id&msg=data_updated"); die();
 }
 else
 {
-	header("location: editslider.php?id=$id&msg=error_update"); die();
+	header("location: editproduct.php?id=$id&msg=error_update"); die();
 }
 
 ?>
